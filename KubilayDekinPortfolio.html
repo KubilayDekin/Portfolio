@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kubilay Dekin Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #007acc;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .project {
+            margin-bottom: 40px;
+        }
+
+        .project h2 {
+            margin: 10px 0 5px;
+            font-size: 1.5em;
+        }
+
+        .project p {
+            margin: 0;
+            font-size: 1em;
+            color: #666;
+        }
+
+        .gallery {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .gallery img {
+            width: 150px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Lightbox styling */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 8px;
+        }
+
+        .lightbox .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 2em;
+            cursor: pointer;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: #ddd;
+            margin: 20px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #007acc;
+            color: white;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Kubilay Dekin Portfolio</h1>
+        <p>Explore my projects and work!</p>
+    </header>
+<div class="container">
+    <div class="project">
+        <h2>Love Eden: Interactive Stories</h2>
+        <p>
+            Involved in the development process from the start, focusing on LiveOps and new feature implementations. 
+            Experienced with technologies like Addressables, PlayFab, various third-party SDKs (ad networks, analytics, etc.), and DI tools.
+            <br><br>
+            Store Link: <a href="https://play.google.com/store/apps/details?id=com.noderno.loveeden&hl=en" target="_blank" style="color: blue; text-decoration: underline;">Click here to view on the store</a>
+        </p>
+		<br>
+        <div class="gallery">
+            <img src="project1_1.png" alt="Project 1 - Image 1" onclick="openLightbox(this)">
+            <img src="project1_2.png" alt="Project 1 - Image 2" onclick="openLightbox(this)">
+            <img src="project1_3.png" alt="Project 1 - Image 3" onclick="openLightbox(this)">
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div class="project">
+        <h2>Cat Game (Mobile Casual / Unreleased)</h2>
+        <p>In this mobile casual game project, which focuses on a cat village, I was one of two developers. 
+        I worked on the NavMesh system, dealing with map design, pathfinding, object behavior based on different conditions, and related Unity technologies. 
+        Additionally, I contributed to the UI systems. Unfortunately, the project was never released.</p>
+		<br>
+        <div class="gallery">
+            <img src="project2_1.png" alt="Project 2 - Image 1" onclick="openLightbox(this)">
+            <img src="project2_2.png" alt="Project 2 - Image 2" onclick="openLightbox(this)">
+            <img src="project2_3.png" alt="Project 2 - Image 3" onclick="openLightbox(this)">
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div class="project">
+        <h2>The Complex Tragedy (PC)</h2>
+        <p>
+			A personal horror game project developed and published on Steam within 2 months. This project focused on gaining experience with the development and publishing process for PC platforms. 
+            I worked on areas like physics, lighting, and save systems, which helped me improve my skills in these aspects.
+            <br><br>
+            Store Link: <a href="https://store.steampowered.com/app/2767400/The_Complex_Tragedy/" target="_blank" style="color: blue; text-decoration: underline;">Click here to view on the store</a>
+        </p>
+		<br>
+        <div class="gallery">
+            <img src="project3_1.png" alt="Project 3 - Image 1" onclick="openLightbox(this)">
+            <img src="project3_2.png" alt="Project 3 - Image 2" onclick="openLightbox(this)">
+            <img src="project3_3.png" alt="Project 3 - Image 3" onclick="openLightbox(this)">
+        </div>
+    </div>
+	    <div class="divider"></div>
+    <div class="project">
+        <h2>More Mobile Game Projects</h2>
+			<p>
+				I have worked on over <strong>50 small-scale mobile game projects</strong>. Many of these projects were presented to different publishers. 
+				I developed my rapid prototyping skills and worked on various aspects of game development.
+			</p>
+
+			<ul>
+				<li>Physics</li>
+				<li>Camera systems</li>
+				<li>UI</li>
+				<li>Animations</li>
+				<li>AI behaviors</li>
+				<li>Sound integration</li>
+				<li>Performance optimization</li>
+				<li>3rd Party SDKs</li>
+			</ul>
+
+			<p>
+				Below are some of the screenshots from these projects. I can provide more upon request!
+			</p>
+		<br>
+        <div class="gallery">
+            <img src="project4_1.png" alt="Project 3 - Image 1" onclick="openLightbox(this)">
+            <img src="project4_2.png" alt="Project 3 - Image 2" onclick="openLightbox(this)">
+            <img src="project4_3.png" alt="Project 3 - Image 3" onclick="openLightbox(this)">
+			<img src="project4_4.png" alt="Project 3 - Image 1" onclick="openLightbox(this)">
+            <img src="project4_5.png" alt="Project 3 - Image 2" onclick="openLightbox(this)">
+            <img src="project4_6.png" alt="Project 3 - Image 3" onclick="openLightbox(this)">
+			<img src="project4_7.png" alt="Project 3 - Image 3" onclick="openLightbox(this)">
+        </div>
+    </div>
+</div>
+    <div class="lightbox" id="lightbox">
+        <span class="close" onclick="closeLightbox()">&times;</span>
+        <img id="lightboxImage" src="" alt="">
+    </div>
+    <footer>
+        <p>Created by <a href="https://github.com/your-github-username">Kubilay Dekin</a></p>
+    </footer>
+    <script>
+        function openLightbox(image) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            lightboxImage.src = image.src; // Set the clicked image as the lightbox image
+            lightbox.style.display = 'flex'; // Show the lightbox
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.style.display = 'none'; // Hide the lightbox
+        }
+    </script>
+</body>
+</html>
