@@ -3,67 +3,537 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kubilay Dekin Portfolio</title>
+    <title>Kubilay Dekin | Game Developer Portfolio</title>
+    
+    <!-- Meta tags for SEO & social sharing -->
+    <meta name="description" content="Professional portfolio of Kubilay Dekin, an experienced Game Developer specializing in Unity, C#, LiveOps, and PC/Mobile publishing. Single-developer of The Hidden Evils Club.">
+    <meta name="keywords" content="Kubilay Dekin, Game Developer, Unity, C#, LiveOps, Portfolio, The Hidden Evils Club, Crazy Kick, Love Eden">
+    <meta property="og:title" content="Kubilay Dekin | Game Developer Portfolio">
+    <meta property="og:description" content="Explore my portfolio of PC and Mobile games built using Unity and C#. Featuring The Hidden Evils Club, Love Eden, and Crazy Kick.">
+    <meta property="og:type" content="website">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        :root {
+            --bg: #0b0c10;
+            --bg-offset: #11131c;
+            --card-bg: rgba(22, 25, 37, 0.7);
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(139, 92, 246, 0.4);
+            
+            --primary: #8b5cf6; /* Electric Violet */
+            --primary-glow: rgba(139, 92, 246, 0.35);
+            --secondary: #06b6d4; /* Neon Cyan */
+            --secondary-glow: rgba(6, 182, 212, 0.35);
+            --accent: #10b981; /* Emerald Green */
+            --accent-glow: rgba(16, 185, 129, 0.35);
+            --warning: #f59e0b; /* Amber */
+
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-dark: #64748b;
+            
+            --font-head: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
         }
 
-        header {
-            background-color: #007acc;
-            color: white;
-            padding: 20px;
-            text-align: center;
+        html {
+            scroll-behavior: smooth;
         }
 
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.06) 0%, transparent 45%);
+            background-attachment: fixed;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            border: 2px solid var(--bg);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* Utility Styles */
         .container {
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
         }
 
-        .project {
+        /* Glassmorphism Common Class */
+        .glass {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+        }
+
+        /* Hero Section */
+        header {
+            position: relative;
+            padding: 100px 0 60px 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .profile-container {
+            margin-bottom: 20px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .profile-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 140px;
+            height: 140px;
+            background: var(--primary);
+            border-radius: 50%;
+            filter: blur(24px);
+            opacity: 0.3;
+            z-index: -1;
+            animation: pulse 4s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.2; transform: translate(-50%, -50%) scale(0.95); }
+            100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1.05); }
+        }
+
+        .avatar-placeholder {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-head);
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: white;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            font-family: var(--font-head);
+            font-size: 3.2rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #fff 40%, #c084fc 80%, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            font-weight: 300;
+        }
+
+        /* Bio Details & Badges */
+        .bio-badges {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
             margin-bottom: 40px;
         }
 
-        .project h2 {
-            margin: 10px 0 5px;
-            font-size: 1.5em;
-        }
-
-        .project p {
-            margin: 0;
-            font-size: 1em;
-            color: #666;
-        }
-
-        .gallery {
+        .bio-badge {
             display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            color: var(--text);
+            transition: var(--transition);
         }
 
-        .gallery img {
-            width: 150px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 8px;
+        .bio-badge i {
+            color: var(--secondary);
+        }
+
+        .bio-badge:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 16px;
+            margin-bottom: 80px;
+        }
+
+        .skill-card {
+            text-align: center;
+            padding: 20px 10px;
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-hover);
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.08);
+        }
+
+        .skill-card i {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .skill-card h3 {
+            font-family: var(--font-head);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Filters Section */
+        .filter-section {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 48px;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            padding: 8px;
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 10px 20px;
+            font-family: var(--font-head);
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 12px;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .gallery img:hover {
+        .filter-btn:hover {
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .filter-btn.active {
+            color: white;
+            background: var(--primary);
+            box-shadow: 0 4px 15px var(--primary-glow);
+        }
+
+        /* Projects Section */
+        .projects-list {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .project-card {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding: 32px;
+            transition: var(--transition);
+            content-visibility: auto; /* Optimization */
+        }
+
+        @media(min-width: 900px) {
+            .project-card {
+                grid-template-columns: 1.2fr 1fr;
+            }
+        }
+
+        .project-card:hover {
+            border-color: var(--border-hover);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Left Side: Media/Gallery */
+        .project-media {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .main-preview {
+            width: 100%;
+            height: 280px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--border);
+            cursor: pointer;
+        }
+
+        .main-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.2s ease, transform 0.5s ease;
+        }
+
+        .main-preview:hover img {
             transform: scale(1.05);
         }
 
-        /* Lightbox styling */
+        .media-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: rgba(15, 17, 26, 0.85);
+            backdrop-filter: blur(8px);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        /* Special Grid for More Mobile Games which has many pictures */
+        .project-gallery.grid-more {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        @media(max-width: 600px) {
+            .project-gallery.grid-more {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .gallery-thumb {
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            position: relative;
+            background: #111;
+        }
+
+        .gallery-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-thumb:hover img {
+            transform: scale(1.1);
+            filter: brightness(1.1);
+        }
+
+        /* Right Side: Details */
+        .project-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .project-title {
+            font-family: var(--font-head);
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: white;
+        }
+
+        .order-badge {
+            background: rgba(139, 92, 246, 0.15);
+            color: var(--primary);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            white-space: nowrap;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        /* Tags and Badges */
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .tag {
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .tag:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Unique highlights for special tags */
+        .tag-unity { border-color: rgba(6, 182, 212, 0.3); color: var(--secondary); background: rgba(6, 182, 212, 0.05); }
+        .tag-csharp { border-color: rgba(139, 92, 246, 0.3); color: var(--primary); background: rgba(139, 92, 246, 0.05); }
+        .tag-liveops { border-color: rgba(245, 158, 11, 0.3); color: var(--warning); background: rgba(245, 158, 11, 0.05); }
+        .tag-solodev { border-color: rgba(16, 185, 129, 0.3); color: var(--accent); background: rgba(16, 185, 129, 0.05); }
+
+        /* Store Link CTA Buttons */
+        .project-links {
+            display: flex;
+            gap: 16px;
+            margin-top: auto;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-family: var(--font-head);
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .cta-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 15px var(--primary-glow);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            background: #7c3aed;
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+        }
+
+        .cta-secondary {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            color: white;
+        }
+
+        .cta-secondary:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Animated Filter Card State (Fades) */
+        .project-card.fade-out {
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            pointer-events: none;
+        }
+
+        .project-card.hidden {
+            display: none;
+        }
+
+        /* Dynamic Lightbox */
         .lightbox {
             display: none;
             position: fixed;
@@ -71,168 +541,727 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(8, 9, 14, 0.95);
             justify-content: center;
             align-items: center;
             z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 80%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .lightbox img {
-            max-width: 90%;
-            max-height: 80%;
-            border-radius: 8px;
+            max-width: 100%;
+            max-height: 75vh;
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .lightbox .close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: white;
-            font-size: 2em;
-            cursor: pointer;
+        .lightbox.show img {
+            transform: scale(1);
         }
 
-        .divider {
-            height: 1px;
-            background-color: #ddd;
-            margin: 20px 0;
-        }
-
-        footer {
+        .lightbox-caption {
+            margin-top: 16px;
+            color: var(--text);
+            font-size: 1rem;
+            font-weight: 500;
             text-align: center;
-            padding: 10px;
-            margin-top: 20px;
-            background-color: #007acc;
+            font-family: var(--font-head);
+            letter-spacing: 0.02em;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border);
+        }
+
+        .lightbox .close-btn {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: var(--text-muted);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            background: transparent;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+        }
+
+        .lightbox .close-btn:hover {
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .lightbox-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 1001;
+        }
+
+        .lightbox-arrow:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
             color: white;
         }
 
-        footer a {
-            color: #fff;
-            text-decoration: none;
+        .lightbox-arrow.prev { left: -70px; }
+        .lightbox-arrow.next { right: -70px; }
+
+        @media(max-width: 768px) {
+            .lightbox-arrow {
+                width: 40px;
+                height: 40px;
+            }
+            .lightbox-arrow.prev { left: 10px; }
+            .lightbox-arrow.next { right: 10px; }
+            .lightbox .close-btn { right: 10px; top: 10px; position: fixed; }
         }
 
-        footer a:hover {
-            text-decoration: underline;
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px var(--primary-glow);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            z-index: 99;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: #7c3aed;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-offset);
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-links a i {
+            font-size: 1.1rem;
         }
     </style>
 </head>
 <body>
+
+    <!-- Header Section -->
     <header>
-        <h1>Kubilay Dekin Portfolio</h1>
-        <p>Explore my projects and work!</p>
+        <div class="container">
+            <div class="profile-container">
+                <div class="profile-glow"></div>
+                <div class="avatar-placeholder">KD</div>
+            </div>
+            <h1>Kubilay Dekin</h1>
+            <p class="subtitle">Game Developer & Software Engineer crafting high-fidelity interactive PC & Mobile gameplay experiences in Unity.</p>
+            
+            <div class="bio-badges">
+                <div class="bio-badge"><i data-lucide="gamepad-2"></i> Unity Expert</div>
+                <div class="bio-badge"><i data-lucide="code-xml"></i> C# Specialist</div>
+                <div class="bio-badge"><i data-lucide="layers"></i> LiveOps Systems</div>
+                <div class="bio-badge"><i data-lucide="monitor"></i> PC Steam Publisher</div>
+                <div class="bio-badge"><i data-lucide="smartphone"></i> Mobile Dev</div>
+            </div>
+        </div>
     </header>
-<div class="container">
-    <div class="project">
-        <h2>Love Eden: Interactive Stories</h2>
-        <p>
-            Involved in the development process from the start, focusing on LiveOps and new feature implementations. 
-            Experienced with technologies like Addressables, PlayFab, various third-party SDKs (ad networks, analytics, etc.), and DI tools.
-            <br><br>
-            Store Link: <a href="https://play.google.com/store/apps/details?id=com.noderno.loveeden&hl=en" target="_blank" style="color: blue; text-decoration: underline;">Click here to view on the store</a>
-        </p>
-		<br>
-        <div class="gallery">
-            <img src="project1_1.png" alt="Project 1 - Image 1" onclick="openLightbox(this)">
-            <img src="project1_2.png" alt="Project 1 - Image 2" onclick="openLightbox(this)">
-            <img src="project1_3.png" alt="Project 1 - Image 3" onclick="openLightbox(this)">
-        </div>
-    </div>
-    <div class="divider"></div>
-    <div class="project">
-        <h2>Crazy Kick! (LiveOps / +100 million downloads)</h2>
-        <p>
-            In this game with over 100 million downloads, I developed new features and performed performance optimizations. Since it has a very large codebase and player base, it was a valuable experience for me.
-            <br><br>
-            Store Link: <a href="https://play.google.com/store/apps/details?id=com.orbitalknight.ridiculousfreekick&hl=en" target="_blank" style="color: blue; text-decoration: underline;">Click here to view on the store</a>
-        </p>
-		<br>
-        <div class="gallery">
-            <img src="crazykick_1.jpg" alt="Project 1 - Image 1" onclick="openLightbox(this)">
-            <img src="crazykick_2.jpg" alt="Project 1 - Image 2" onclick="openLightbox(this)">
-            <img src="crazykick_3.jpg" alt="Project 1 - Image 3" onclick="openLightbox(this)">
-        </div>
-    </div>
-    <div class="divider"></div>
-    <div class="project">
-        <h2>Cat Game (Mobile Casual / Unreleased)</h2>
-        <p>In this mobile casual game project, which focuses on a cat village, I was one of two developers. 
-        I worked on the NavMesh system, dealing with map design, pathfinding, object behavior based on different conditions, and related Unity technologies. 
-        Additionally, I contributed to the UI systems. Unfortunately, the project was never released.</p>
-		<br>
-        <div class="gallery">
-            <img src="project2_1.png" alt="Project 2 - Image 1" onclick="openLightbox(this)">
-            <img src="project2_2.png" alt="Project 2 - Image 2" onclick="openLightbox(this)">
-            <img src="project2_3.png" alt="Project 2 - Image 3" onclick="openLightbox(this)">
-        </div>
-    </div>
-    <div class="divider"></div>
-    <div class="project">
-        <h2>The Complex Tragedy (PC)</h2>
-        <p>
-			A personal horror game project developed and published on Steam within 2 months. This project focused on gaining experience with the development and publishing process for PC platforms. 
-            I worked on areas like physics, lighting, and save systems, which helped me improve my skills in these aspects.
-            <br><br>
-            Store Link: <a href="https://store.steampowered.com/app/2767400/The_Complex_Tragedy/" target="_blank" style="color: blue; text-decoration: underline;">Click here to view on the store</a>
-        </p>
-		<br>
-        <div class="gallery">
-            <img src="project3_1.png" alt="Project 3 - Image 1" onclick="openLightbox(this)">
-            <img src="project3_2.png" alt="Project 3 - Image 2" onclick="openLightbox(this)">
-            <img src="project3_3.png" alt="Project 3 - Image 3" onclick="openLightbox(this)">
-        </div>
-    </div>
-	    <div class="divider"></div>
-    <div class="project">
-        <h2>More Mobile Game Projects</h2>
-			<p>
-				I have worked on over <strong>50 small-scale mobile game projects</strong>. Many of these projects were presented to different publishers. 
-				I developed my rapid prototyping skills and worked on various aspects of game development.
-			</p>
 
-			<ul>
-				<li>Physics</li>
-				<li>Camera systems</li>
-				<li>UI</li>
-				<li>Animations</li>
-				<li>AI behaviors</li>
-				<li>Sound integration</li>
-				<li>Performance optimization</li>
-				<li>3rd Party SDKs</li>
-			</ul>
-
-			<p>
-				Below are some of the screenshots from these projects. I can provide more upon request!
-			</p>
-		<br>
-        <div class="gallery">
-            <img src="project4_1.png" alt="Project 3 - Image 1" onclick="openLightbox(this)">
-            <img src="project4_2.png" alt="Project 3 - Image 2" onclick="openLightbox(this)">
-            <img src="project4_3.png" alt="Project 3 - Image 3" onclick="openLightbox(this)">
-			<img src="project4_4.png" alt="Project 3 - Image 1" onclick="openLightbox(this)">
-            <img src="project4_5.png" alt="Project 3 - Image 2" onclick="openLightbox(this)">
-            <img src="project4_6.png" alt="Project 3 - Image 3" onclick="openLightbox(this)">
-			<img src="project4_7.png" alt="Project 3 - Image 3" onclick="openLightbox(this)">
+    <div class="container">
+        <!-- Professional Skills Overview -->
+        <div class="skills-grid">
+            <div class="skill-card glass">
+                <i data-lucide="cpu"></i>
+                <h3>Physics & Sim</h3>
+            </div>
+            <div class="skill-card glass">
+                <i data-lucide="eye"></i>
+                <h3>Camera Systems</h3>
+            </div>
+            <div class="skill-card glass">
+                <i data-lucide="palette"></i>
+                <h3>UI & Layouts</h3>
+            </div>
+            <div class="skill-card glass">
+                <i data-lucide="sparkles"></i>
+                <h3>VFX & Shaders</h3>
+            </div>
+            <div class="skill-card glass">
+                <i data-lucide="users"></i>
+                <h3>AI Behaviors</h3>
+            </div>
+            <div class="skill-card glass">
+                <i data-lucide="zap"></i>
+                <h3>Performance</h3>
+            </div>
         </div>
+
+        <!-- Sticky Filter Nav -->
+        <nav class="filter-section glass" id="filter-nav">
+            <button class="filter-btn active" onclick="filterCategory('all', this)"><i data-lucide="layout-grid"></i> All Projects</button>
+            <button class="filter-btn" onclick="filterCategory('pc', this)"><i data-lucide="monitor"></i> PC Games</button>
+            <button class="filter-btn" onclick="filterCategory('mobile', this)"><i data-lucide="smartphone"></i> Mobile Games</button>
+            <button class="filter-btn" onclick="filterCategory('liveops', this)"><i data-lucide="server"></i> LiveOps</button>
+        </nav>
+
+        <!-- Projects List -->
+        <main class="projects-list" id="projects-container">
+            
+            <!-- Project 1: Love Eden (Mobile / LiveOps) -->
+            <article class="project-card glass" data-categories="mobile liveops">
+                <div class="project-media">
+                    <div class="main-preview" onclick="openLightbox('project1_1.png', 'Love Eden - Main Gameplay Story')">
+                        <span class="media-badge"><i data-lucide="image"></i> Mobile Visual Story</span>
+                        <img src="project1_1.png" alt="Love Eden Feature Graphic" id="p1-main">
+                    </div>
+                    <div class="project-gallery">
+                        <div class="gallery-thumb" onclick="swapMainPreview('project1_1.png', 'p1-main')">
+                            <img src="project1_1.png" alt="Love Eden Thumbnail 1">
+                        </div>
+                        <div class="gallery-thumb" onclick="swapMainPreview('project1_2.png', 'p1-main')">
+                            <img src="project1_2.png" alt="Love Eden Thumbnail 2">
+                        </div>
+                        <div class="gallery-thumb" onclick="swapMainPreview('project1_3.png', 'p1-main')">
+                            <img src="project1_3.png" alt="Love Eden Thumbnail 3">
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div>
+                        <div class="project-header-row">
+                            <h2 class="project-title">Love Eden: Interactive Stories</h2>
+                            <span class="order-badge">1st Priority</span>
+                        </div>
+                        <p class="project-desc">
+                            Involved in the professional development cycle from the beginning, focusing heavily on LiveOps implementations, cloud databases, dynamic assets delivery, and writing highly modular systems.
+                        </p>
+                        <div class="tag-container">
+                            <span class="tag tag-unity">Unity</span>
+                            <span class="tag tag-csharp">C#</span>
+                            <span class="tag tag-liveops">LiveOps</span>
+                            <span class="tag">Addressables</span>
+                            <span class="tag">PlayFab</span>
+                            <span class="tag">DI (Zenject/VContainer)</span>
+                            <span class="tag">3rd Party SDKs</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://play.google.com/store/apps/details?id=com.noderno.loveeden&hl=en" target="_blank" class="cta-btn cta-primary">
+                            <i data-lucide="download"></i> Google Play Store
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 2: Crazy Kick! (Mobile / LiveOps) -->
+            <article class="project-card glass" data-categories="mobile liveops">
+                <div class="project-media">
+                    <div class="main-preview" onclick="openLightbox('crazykick_1.jpg', 'Crazy Kick! - Epic Football Free Kick')">
+                        <span class="media-badge"><i data-lucide="image"></i> Mobile Casual</span>
+                        <img src="crazykick_1.jpg" alt="Crazy Kick Feature Graphic" id="p2-main">
+                    </div>
+                    <div class="project-gallery">
+                        <div class="gallery-thumb" onclick="swapMainPreview('crazykick_1.jpg', 'p2-main')">
+                            <img src="crazykick_1.jpg" alt="Crazy Kick Thumbnail 1">
+                        </div>
+                        <div class="gallery-thumb" onclick="swapMainPreview('crazykick_2.jpg', 'p2-main')">
+                            <img src="crazykick_2.jpg" alt="Crazy Kick Thumbnail 2">
+                        </div>
+                        <div class="gallery-thumb" onclick="swapMainPreview('crazykick_3.jpg', 'p2-main')">
+                            <img src="crazykick_3.jpg" alt="Crazy Kick Thumbnail 3">
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div>
+                        <div class="project-header-row">
+                            <h2 class="project-title">Crazy Kick! (+100M Downloads)</h2>
+                            <span class="order-badge">2nd Priority</span>
+                        </div>
+                        <p class="project-desc">
+                            Worked on this hyper-popular mobile casual title with over 100 million downloads. Focused on developing robust new features, debugging production scripts, and integrating highly critical performance optimizations across a very massive legacy codebase.
+                        </p>
+                        <div class="tag-container">
+                            <span class="tag tag-unity">Unity</span>
+                            <span class="tag tag-csharp">C#</span>
+                            <span class="tag tag-liveops">LiveOps</span>
+                            <span class="tag">Performance Tuning</span>
+                            <span class="tag">Mass Scale</span>
+                            <span class="tag">Physics System</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://play.google.com/store/apps/details?id=com.orbitalknight.ridiculousfreekick&hl=en" target="_blank" class="cta-btn cta-primary">
+                            <i data-lucide="download"></i> Google Play Store
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 3: The Hidden Evils Club (PC - Solo Developer) -->
+            <article class="project-card glass" data-categories="pc">
+                <div class="project-media">
+                    <div class="main-preview" onclick="openLightbox('hidden_evils_capsule.jpg', 'The Hidden Evils Club - Main Capsule Art')">
+                        <span class="media-badge"><i data-lucide="image"></i> PC Steam Game</span>
+                        <img src="hidden_evils_capsule.jpg" alt="The Hidden Evils Club Capsule Graphic" id="p3-main">
+                    </div>
+                    <div class="project-gallery">
+                        <div class="gallery-thumb" onclick="swapMainPreview('hidden_evils_capsule.jpg', 'p3-main')">
+                            <img src="hidden_evils_capsule.jpg" alt="Hidden Evils Capsule Thumbnail">
+                        </div>
+                        <div class="gallery-thumb" onclick="swapMainPreview('HecFoto1.jpg', 'p3-main')">
+                            <img src="HecFoto1.jpg" alt="Hidden Evils Gameplay 1">
+                        </div>
+                        <div class="gallery-thumb" onclick="swapMainPreview('HecFoto2.jpg', 'p3-main')">
+                            <img src="HecFoto2.jpg" alt="Hidden Evils Gameplay 2">
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div>
+                        <div class="project-header-row">
+                            <h2 class="project-title">The Hidden Evils Club</h2>
+                            <span class="order-badge">3rd Priority - Demo Out Now!</span>
+                        </div>
+                        <p class="project-desc">
+                            Defend Weird Hill against relentless zombie waves. Build defensive towers, manage scarce strategic resources, command unique heroes, and uncover the dark secrets behind a spooky town that refuses to die. Built entirely as a solo developer from architectural design to Steam integration.
+                        </p>
+                        <div class="tag-container">
+                            <span class="tag tag-solodev">Solo Developer</span>
+                            <span class="tag tag-unity">Unity 3D</span>
+                            <span class="tag tag-csharp">C#</span>
+                            <span class="tag">Tower Defense</span>
+                            <span class="tag">Tactical Strategy</span>
+                            <span class="tag">Steam Publishing</span>
+                            <span class="tag">Resource Mgmt</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://store.steampowered.com/app/4610680/The_Hidden_Evils_Club/" target="_blank" class="cta-btn cta-primary">
+                            <i data-lucide="shopping-bag"></i> Steam Store Page
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 4: Cat Game (Mobile / Unreleased) -->
+            <article class="project-card glass" data-categories="mobile">
+                <div class="project-media">
+                    <div class="main-preview" onclick="openLightbox('project2_1.png', 'Cat Game - Cozy Village Pathfinding')">
+                        <span class="media-badge"><i data-lucide="image"></i> Mobile Casual</span>
+                        <img src="project2_1.png" alt="Cat Game Feature Graphic" id="p4-main">
+                    </div>
+                    <div class="project-gallery">
+                        <div class="gallery-thumb" onclick="swapMainPreview('project2_1.png', 'p4-main')">
+                            <img src="project2_1.png" alt="Cat Game Thumbnail 1">
+                        </div>
+                        <div class="gallery-thumb" onclick="swapMainPreview('project2_2.png', 'p4-main')">
+                            <img src="project2_2.png" alt="Cat Game Thumbnail 2">
+                        </div>
+                        <div class="gallery-thumb" onclick="swapMainPreview('project2_3.png', 'p4-main')">
+                            <img src="project2_3.png" alt="Cat Game Thumbnail 3">
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div>
+                        <div class="project-header-row">
+                            <h2 class="project-title">Cat Game (Mobile Casual)</h2>
+                            <span class="order-badge">Unreleased</span>
+                        </div>
+                        <p class="project-desc">
+                            A cozy, mobile casual village-builder game where I was one of two developers. Implemented an extensive custom NavMesh system focusing on complex cat AI behaviors, pathfinding under dynamic world configurations, objects interactions, and responsive UI screens.
+                        </p>
+                        <div class="tag-container">
+                            <span class="tag tag-unity">Unity</span>
+                            <span class="tag tag-csharp">C#</span>
+                            <span class="tag">NavMesh AI</span>
+                            <span class="tag">Pathfinding</span>
+                            <span class="tag">UI Systems</span>
+                            <span class="tag">Co-op Dev</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <button class="cta-btn cta-secondary" disabled style="opacity: 0.6; cursor: not-allowed;">
+                            <i data-lucide="lock"></i> Unreleased Project
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 5: The Complex Tragedy (PC / Solo Developer) -->
+            <article class="project-card glass" data-categories="pc">
+                <div class="project-media">
+                    <div class="main-preview" onclick="openLightbox('project3_1.png', 'The Complex Tragedy - Suspense Atmosphere')">
+                        <span class="media-badge"><i data-lucide="image"></i> PC Steam Horror</span>
+                        <img src="project3_1.png" alt="The Complex Tragedy Graphic" id="p5-main">
+                    </div>
+                    <div class="project-gallery">
+                        <div class="gallery-thumb" onclick="swapMainPreview('project3_1.png', 'p5-main')">
+                            <img src="project3_1.png" alt="Complex Tragedy Thumbnail 1">
+                        </div>
+                        <div class="gallery-thumb" onclick="swapMainPreview('project3_2.png', 'p5-main')">
+                            <img src="project3_2.png" alt="Complex Tragedy Thumbnail 2">
+                        </div>
+                        <div class="gallery-thumb" onclick="swapMainPreview('project3_3.png', 'p5-main')">
+                            <img src="project3_3.png" alt="Complex Tragedy Thumbnail 3">
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div>
+                        <div class="project-header-row">
+                            <h2 class="project-title">The Complex Tragedy</h2>
+                            <span class="order-badge">Solo Released</span>
+                        </div>
+                        <p class="project-desc">
+                            A personal atmospheric PC horror game developed, refined, and published on Steam in a rapid 2-month development cycle. Challenged myself to manage complete end-to-end releases. Built realistic interactive physics, immersive lighting systems, and custom binary state saving.
+                        </p>
+                        <div class="tag-container">
+                            <span class="tag tag-solodev">Solo Developer</span>
+                            <span class="tag tag-unity">Unity 3D</span>
+                            <span class="tag tag-csharp">C#</span>
+                            <span class="tag">Horror Game</span>
+                            <span class="tag">Realtime Lighting</span>
+                            <span class="tag">Steam Integration</span>
+                            <span class="tag">Save Systems</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://store.steampowered.com/app/2767400/The_Complex_Tragedy/" target="_blank" class="cta-btn cta-primary">
+                            <i data-lucide="shopping-bag"></i> Steam Store Page
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 6: More Mobile Games (Rapid Prototyping) -->
+            <article class="project-card glass" data-categories="mobile">
+                <div class="project-media">
+                    <div class="main-preview" onclick="openLightbox('project4_1.png', 'Mobile Prototypes - Physics & Gameplay Mechanics')">
+                        <span class="media-badge"><i data-lucide="image"></i> 50+ Prototypes</span>
+                        <img src="project4_1.png" alt="Mobile Prototypes Preview" id="p6-main">
+                    </div>
+                    <div class="project-gallery grid-more">
+                        <div class="gallery-thumb" onclick="swapMainPreview('project4_1.png', 'p6-main')">
+                            <img src="project4_1.png" alt="Prototype 1">
+                        </div>
+                        <div class="gallery-thumb" onclick="swapMainPreview('project4_2.png', 'p6-main')">
+                            <img src="project4_2.png" alt="Prototype 2">
+                        </div>
+                        <div class="gallery-thumb" onclick="swapMainPreview('project4_3.png', 'p6-main')">
+                            <img src="project4_3.png" alt="Prototype 3">
+                        </div>
+                        <div class="gallery-thumb" onclick="swapMainPreview('project4_4.png', 'p6-main')">
+                            <img src="project4_4.png" alt="Prototype 4">
+                        </div>
+                        <div class="gallery-thumb" onclick="swapMainPreview('project4_5.png', 'p6-main')">
+                            <img src="project4_5.png" alt="Prototype 5">
+                        </div>
+                        <div class="gallery-thumb" onclick="swapMainPreview('project4_6.png', 'p6-main')">
+                            <img src="project4_6.png" alt="Prototype 6">
+                        </div>
+                        <div class="gallery-thumb" onclick="swapMainPreview('project4_7.png', 'p6-main')">
+                            <img src="project4_7.png" alt="Prototype 7">
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div>
+                        <div class="project-header-row">
+                            <h2 class="project-title">More Mobile Game Projects</h2>
+                            <span class="order-badge">Rapid Prototyping</span>
+                        </div>
+                        <p class="project-desc">
+                            Designed, built, and shipped over 50 small-scale mobile games presented to diverse tier-1 mobile publishers. Gained rich, swift gameplay loop prototyping skills and specialized in making games feel instantly responsive and fun.
+                        </p>
+                        <div class="tag-container">
+                            <span class="tag tag-unity">Unity</span>
+                            <span class="tag tag-csharp">C#</span>
+                            <span class="tag">Camera Controllers</span>
+                            <span class="tag">AI States</span>
+                            <span class="tag">Mobile Optimization</span>
+                            <span class="tag">Rapid Prototyping</span>
+                            <span class="tag">Audio Integration</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <span class="cta-btn cta-secondary" style="font-size: 0.9rem; padding: 10px 18px; border-style: dashed; cursor: default;">
+                            <i data-lucide="info"></i> Custom prototypes available on request
+                        </span>
+                    </div>
+                </div>
+            </article>
+
+        </main>
     </div>
-</div>
+
+    <!-- Lightbox Modal -->
     <div class="lightbox" id="lightbox">
-        <span class="close" onclick="closeLightbox()">&times;</span>
-        <img id="lightboxImage" src="" alt="">
+        <button class="close-btn" onclick="closeLightbox()">&times;</button>
+        <button class="lightbox-arrow prev" id="lightbox-prev" onclick="navigateLightbox(-1)">&lsaquo;</button>
+        <div class="lightbox-content">
+            <img id="lightboxImage" src="" alt="Full-screen graphic">
+            <div class="lightbox-caption" id="lightboxCaption">Caption Text</div>
+        </div>
+        <button class="lightbox-arrow next" id="lightbox-next" onclick="navigateLightbox(1)">&rsaquo;</button>
     </div>
+
+    <!-- Scroll-to-top button -->
+    <button class="back-to-top" id="back-to-top" onclick="scrollToTop()">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
     <footer>
-        <p>Created by <a href="https://github.com/your-github-username">Kubilay Dekin</a></p>
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://github.com/KubilayDekin" target="_blank">
+                    <i data-lucide="github"></i> GitHub
+                </a>
+                <a href="mailto:kubilaydekin@gmail.com">
+                    <i data-lucide="mail"></i> Email Contact
+                </a>
+                <a href="https://store.steampowered.com/app/4610680/The_Hidden_Evils_Club/" target="_blank">
+                    <i data-lucide="shopping-bag"></i> Steam Dev Page
+                </a>
+            </div>
+            <p>&copy; 2026 Kubilay Dekin. All Rights Reserved. Crafted with high performance & styling.</p>
+        </div>
     </footer>
+
+    <!-- Scripts -->
     <script>
-        function openLightbox(image) {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImage = document.getElementById('lightboxImage');
-            lightboxImage.src = image.src; // Set the clicked image as the lightbox image
-            lightbox.style.display = 'flex'; // Show the lightbox
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Swap main thumbnail preview in each card
+        function swapMainPreview(imageSrc, mainImgId) {
+            const mainImg = document.getElementById(mainImgId);
+            if(mainImg) {
+                mainImg.style.opacity = '0';
+                setTimeout(() => {
+                    mainImg.src = imageSrc;
+                    mainImg.style.opacity = '1';
+                }, 150);
+            }
         }
 
+        // Active image array list for Lightbox Slide Show Navigation
+        let allGalleryImages = [];
+        let currentImageIndex = 0;
+
+        // Compile all image elements on page load for the lightbox
+        function compileImages() {
+            allGalleryImages = Array.from(document.querySelectorAll('.gallery-thumb img, .main-preview img')).map(img => {
+                return {
+                    src: img.src,
+                    alt: img.alt || 'Gameplay Screenshot'
+                };
+            });
+        }
+        window.addEventListener('DOMContentLoaded', compileImages);
+
+        // Open Lightbox
+        function openLightbox(imageSrc, captionText) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxCaption = document.getElementById('lightboxCaption');
+            
+            // Find index
+            currentImageIndex = allGalleryImages.findIndex(img => img.src.includes(imageSrc));
+            if (currentImageIndex === -1) {
+                // If clicked direct main source and not found in thumbnails
+                allGalleryImages.push({ src: imageSrc, alt: captionText });
+                currentImageIndex = allGalleryImages.length - 1;
+            }
+
+            lightboxImage.src = imageSrc;
+            lightboxCaption.textContent = captionText || allGalleryImages[currentImageIndex].alt;
+            
+            lightbox.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Lock main scroll
+        }
+
+        // Close Lightbox
         function closeLightbox() {
             const lightbox = document.getElementById('lightbox');
-            lightbox.style.display = 'none'; // Hide the lightbox
+            lightbox.classList.remove('show');
+            document.body.style.overflow = 'auto'; // Unlock main scroll
+        }
+
+        // Navigate Lightbox (prev / next)
+        function navigateLightbox(direction) {
+            currentImageIndex += direction;
+            if(currentImageIndex < 0) {
+                currentImageIndex = allGalleryImages.length - 1;
+            } else if (currentImageIndex >= allGalleryImages.length) {
+                currentImageIndex = 0;
+            }
+            
+            const activeImage = allGalleryImages[currentImageIndex];
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxCaption = document.getElementById('lightboxCaption');
+            
+            // Fade out, swap, fade in
+            lightboxImage.style.transform = 'scale(0.95)';
+            lightboxImage.style.opacity = '0.3';
+            setTimeout(() => {
+                lightboxImage.src = activeImage.src;
+                lightboxCaption.textContent = activeImage.alt;
+                lightboxImage.style.transform = 'scale(1)';
+                lightboxImage.style.opacity = '1';
+            }, 100);
+        }
+
+        // Close on escape key and navigation with arrows
+        window.addEventListener('keydown', (e) => {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.classList.contains('show')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowRight') navigateLightbox(1);
+                if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            }
+        });
+
+        // Close when clicking empty lightbox background
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Dynamic Filtering
+        function filterCategory(category, button) {
+            // Update Active Tab styles
+            const nav = document.getElementById('filter-nav');
+            const btns = nav.querySelectorAll('.filter-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+            
+            // Find clicking button
+            if (button) {
+                button.classList.add('active');
+            }
+
+            const cards = document.querySelectorAll('.project-card');
+            
+            cards.forEach(card => {
+                const categories = card.getAttribute('data-categories').split(' ');
+                
+                if (category === 'all' || categories.includes(category)) {
+                    card.classList.remove('hidden');
+                    // Add micro timeout to run fade transition
+                    setTimeout(() => {
+                        card.classList.remove('fade-out');
+                    }, 50);
+                } else {
+                    card.classList.add('fade-out');
+                    // Wait for fade out animation before hiding display
+                    setTimeout(() => {
+                        card.classList.add('hidden');
+                    }, 300);
+                }
+            });
+        }
+
+        // Show/Hide back-to-top button
+        const backToTopBtn = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
     </script>
 </body>
